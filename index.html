@@ -7,16 +7,38 @@
   <script src="https://js.arcgis.com/4.29/"></script>
   <style>
     html, body, #viewDiv { padding: 0; margin: 0; height: 100%; width: 100%; }
+
     #buttons {
       position: absolute;
       top: 10px; left: 10px;
-      background: white; padding: 10px; z-index: 99;
+      background: white;
+      padding: 10px;
+      z-index: 99;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
     }
+
     #description {
       position: absolute;
       bottom: 10px; left: 10px;
-      background: white; padding: 10px; z-index: 99;
+      background: white;
+      padding: 10px;
+      z-index: 99;
       max-width: 300px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+
+    #buttons button {
+      margin-bottom: 5px;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+    }
+
+    #buttons button.active-button {
+      border: 3px solid #333;
+      font-weight: bold;
+      background-color: #f0f0f0;
     }
   </style>
 </head>
@@ -57,10 +79,10 @@
         for (const [layerName, layer] of Object.entries(layers)) {
           layer.visible = (layerName === name);
         }
-      
-        // Update description text
+
+        // Update description
         document.getElementById("description").textContent = descriptions[name];
-      
+
         // Highlight the active button
         document.querySelectorAll("#buttons button").forEach((btn) => {
           btn.classList.remove("active-button");
@@ -72,3 +94,4 @@
   </script>
 </body>
 </html>
+
