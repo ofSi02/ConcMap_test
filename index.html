@@ -53,10 +53,20 @@
       }
 
       window.showLayer = (name) => {
+        // Toggle layer visibility
         for (const [layerName, layer] of Object.entries(layers)) {
           layer.visible = (layerName === name);
         }
+      
+        // Update description text
         document.getElementById("description").textContent = descriptions[name];
+      
+        // Highlight the active button
+        document.querySelectorAll("#buttons button").forEach((btn) => {
+          btn.classList.remove("active-button");
+        });
+        const activeBtn = document.querySelector(`#buttons button[onclick="showLayer('${name}')"]`);
+        if (activeBtn) activeBtn.classList.add("active-button");
       };
     });
   </script>
